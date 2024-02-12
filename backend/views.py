@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
+from backend.models import Contact
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -15,11 +16,15 @@ def contact(request):
     return render(request, 'contact.html')
 
 
+views = {
+    'index': index,
+    'about': about,
+    'services': services,
+    'portfolio': portfolio,
+    'contact': contact,
+}
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Contact  # Import your Contact model
-
+  # Import your Contact model
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -37,7 +42,7 @@ def contact(request):
             email=email,
             message=message
         )
-
+        return HttpResponse("<h1>THANKS FOR CONTACTING...I'LL GET IN TOUCH. THANK YOU.</h1>")
         messages.success(request, 'Details successfully processed and saved.')
         return redirect('home')  # Replace 'index' with the actual name or URL pattern
 

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import csv
 from .models import Contact
 
+
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'message')  # Modify according to your actual model fields
     # list_filter = ('subject',)  # Add a filter for the 'subject' field
